@@ -17,7 +17,7 @@ class RoomAdventure {
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', 'unlock' and 'take'.";
 
     public static void main(String[] args){
-         
+        
         setupGame();
 
         // while loops
@@ -198,7 +198,7 @@ class RoomAdventure {
 
 
         //Room 4 
-        String[] room4ExitDirections = {"north", "west"};
+        String[] room4ExitDirections = {"north", "east"};
         Room[] room4ExitDestinations = {room1, room3};
         String[] room4Items = {};
         String[] room4ItemDescriptions = {};
