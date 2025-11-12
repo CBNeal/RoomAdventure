@@ -7,6 +7,12 @@ class RoomAdventure {
     private static String[] inventory = {null, null, null, null, null};
     private static String status;
 
+    private static Room room1;
+    private static Room room2;
+    private static Room room3;
+    private static Room room4;
+    private static Room room5;
+
 
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'.";
 
@@ -53,6 +59,9 @@ class RoomAdventure {
                     break;
                 case "take":
                     handleTake(noun);
+                    break;
+                case "unlock":
+                    handleLock(noun);
                     break;
                 default: status = DEFAULT_STATUS;
             }
@@ -108,18 +117,34 @@ class RoomAdventure {
                         break;
                     }
                 }
+            }
+        }
+    }
+    private static void handleLock(String unlock) {
+        status = "You need a key for that.";
 
+        if (unlock.equals("door")) {
+            for (String item : inventory) {
+                if (item != null && item.equals("key")) {
+                status = "Door Unlocked";
+                String[] room3ExitDirections = {"north", "west", "up"};
+                Room[] room3ExitDestinations = {room2, room4, room5};
+                room3.setExitDirections(room3ExitDirections);
+                room3.setExitDestinations(room3ExitDestinations);
+                }
             }
         }
     }
 
     private static void setupGame(){
-        Room room1 = new Room("Room 1"); // instantiation of an object
-        Room room2 = new Room("Room 2");
+        room1 = new Room("Room 1"); // instantiation of an object
+        room2 = new Room("Room 2");
+        room3 = new Room("Room 3");
+        room4 = new Room("Room 4");
 
         // Room 1
         String[] room1ExitDirections = {"east", "south"}; // declaring an array
-        Room[]   room1ExitDestinations = {room2};
+        Room[]   room1ExitDestinations = {room2, room4};
 
         String[] room1Items = {"chair", "desk"};
         String[] room1ItemDescriptions = {
@@ -136,8 +161,8 @@ class RoomAdventure {
         room1.setGrabbables(room1Grabbables);
 
         // Room 2
-        String[] room2ExitDirections = {"west"};
-        Room[]   room2ExitDestinations = {room1};
+        String[] room2ExitDirections = {"west", "south"};
+        Room[]   room2ExitDestinations = {room1, room3};
         String[] room2Items = {"fireplace", "rug"};
         String[] room2ItemDescriptions = {
             "Its on fire", 
@@ -150,7 +175,52 @@ class RoomAdventure {
         room2.setItemDescriptions(room2ItemDescriptions);
         room2.setGrabbables(room2Grabbables);
 
+        //Room 3 
+        String[] room3ExitDirections = {"north","west"};
+        Room[] room3ExitDestinations = {room2, room4};
+        String[] room3Items = {"door"};
+        String[] room3ItemDescriptions = {"Locked Door With A empy Keyhole"};
+        String[] room3Grabbables = {};
+
+        room3.setExitDirections(room3ExitDirections);
+        room3.setExitDestinations(room3ExitDestinations);
+        room3.setItems(room3Items);
+        room3.setItemDescriptions(room3ItemDescriptions);
+        room3.setGrabbables(room3Grabbables);
+
+
+        //Room 4 
+        String[] room4ExitDirections = {"north", "west"};
+        Room[] room4ExitDestinations = {room1, room3};
+        String[] room4Items = {};
+        String[] room4ItemDescriptions = {};
+        String[] room4Grabbables = {};
+
+        room4.setExitDirections(room4ExitDirections);
+        room4.setExitDestinations(room4ExitDestinations);
+        room4.setItems(room4Items);
+        room4.setItemDescriptions(room4ItemDescriptions);
+        room4.setGrabbables(room4Grabbables);
+
+        //Room5
+        room5 = new Room("Room 5");
+        String[] room5ExitDirections = {"down"};  
+        Room[]   room5ExitDestinations = {room3};
+        String[] room5Items = {"treasure"};
+        String[] room5ItemDescriptions = {"Golden Items"};
+        String[] room5Grabbables = {"gold"};
+
+        room5.setExitDirections(room5ExitDirections);
+        room5.setExitDestinations(room5ExitDestinations);
+        room5.setItems(room5Items);
+        room5.setItemDescriptions(room5ItemDescriptions);
+        room5.setGrabbables(room5Grabbables);
+
+
+        
         currentRoom = room1;
+
+
     }
 
 
