@@ -1,3 +1,5 @@
+//Callum Neal
+//Added Win Condition and Secret Room
 import java.util.Scanner;
 
 class RoomAdventure {
@@ -88,7 +90,6 @@ class RoomAdventure {
         Room[] rooms = currentRoom.getExitDestinations();
 
         for (int i=0; i < directions.length; i++){
-            // for strings we use .equals() to compare 
             if (noun.equals(directions[i])){
                 currentRoom = rooms[i];
                 status = "Changed Room";
@@ -115,12 +116,10 @@ class RoomAdventure {
         for (int i = 0; i < grabs.length; i++){
             if (noun.equals(grabs[i])){
 
-                // maybe make a addToInventory() func?
-                // maybe expand the inventory to any number of items
+
                 for (int j=0; j < inventory.length; j++){
                     if (inventory[j] == null){
                         inventory[j] = noun;
-                        // maybe say what item was added?
                         status = "Added item to inventory";
                         break;
                     }
@@ -145,7 +144,7 @@ class RoomAdventure {
     }
 
     private static void setupGame(){
-        room1 = new Room("Room 1"); // instantiation of an object
+        room1 = new Room("Room 1"); 
         room2 = new Room("Room 2");
         room3 = new Room("Room 3");
         room4 = new Room("Room 4");
