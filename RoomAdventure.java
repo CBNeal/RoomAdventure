@@ -14,7 +14,7 @@ class RoomAdventure {
     private static Room room5;
 
 
-    final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'.";
+    final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', 'unlock' and 'take'.";
 
     public static void main(String[] args){
          
@@ -65,7 +65,15 @@ class RoomAdventure {
                     break;
                 default: status = DEFAULT_STATUS;
             }
-            
+            for (String goldcheck : inventory) {
+                if ( goldcheck != null && goldcheck.equals("gold")) {
+                status = "YOU WIN";
+                System.out.println("YOU WIN!!!!");
+                System.out.print("###########################################################################################################3");
+                System.exit(0);
+
+                }
+            }
             System.out.println(status);
             
                     
