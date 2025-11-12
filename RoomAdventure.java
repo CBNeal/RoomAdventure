@@ -54,6 +54,9 @@ class RoomAdventure {
                 case "take":
                     handleTake(noun);
                     break;
+                case "unlock":
+                    handleLock(noun);
+                    break;
                 default: status = DEFAULT_STATUS;
             }
             
@@ -108,7 +111,19 @@ class RoomAdventure {
                         break;
                     }
                 }
+            }
+        }
+    }
+    private static void handleLock(String unlock) {
+        status = "You need a key for that.";
 
+        if (unlock.equals("door")) {
+            for (String item : inventory) {
+                if (item != null && item.equals("key")) {
+                status = "Door Unlocked";
+
+                    return;
+                }
             }
         }
     }
@@ -155,8 +170,8 @@ class RoomAdventure {
         //Room 3 
         String[] room3ExitDirections = {"north, west"};
         Room[] room3ExitDestinations = {room2, room4};
-        String[] room3Items = {};
-        String[] room3ItemDescriptions = {};
+        String[] room3Items = {"door"};
+        String[] room3ItemDescriptions = {"Locked Door With A empy Keyhole"};
         String[] room3Grabbables = {};
 
         room3.setExitDirections(room3ExitDirections);
@@ -178,6 +193,22 @@ class RoomAdventure {
         room4.setItems(room4Items);
         room4.setItemDescriptions(room4ItemDescriptions);
         room4.setGrabbables(room4Grabbables);
+
+        //Room5
+        // Room 5 - The Secret Room
+        Room room5 = new Room("Room 5");
+        String[] room5ExitDirections = {"down"};  
+        Room[]   room5ExitDestinations = {room3};
+        String[] room5Items = {"treasure"};
+        String[] room5ItemDescriptions = {"Golden Items"};
+        String[] room5Grabbables = {"gold"};
+
+        room5.setExitDirections(room5ExitDirections);
+        room5.setExitDestinations(room5ExitDestinations);
+        room5.setItems(room5Items);
+        room5.setItemDescriptions(room5ItemDescriptions);
+        room5.setGrabbables(room5Grabbables);
+
 
         
         currentRoom = room1;
