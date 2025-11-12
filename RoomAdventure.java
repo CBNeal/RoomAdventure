@@ -7,6 +7,12 @@ class RoomAdventure {
     private static String[] inventory = {null, null, null, null, null};
     private static String status;
 
+    private static Room room1;
+    private static Room room2;
+    private static Room room3;
+    private static Room room4;
+    private static Room room5;
+
 
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'.";
 
@@ -121,18 +127,20 @@ class RoomAdventure {
             for (String item : inventory) {
                 if (item != null && item.equals("key")) {
                 status = "Door Unlocked";
-
-                    return;
+                String[] room3ExitDirections = {"north", "west", "up"};
+                Room[] room3ExitDestinations = {room2, room4, room5};
+                room3.setExitDirections(room3ExitDirections);
+                room3.setExitDestinations(room3ExitDestinations);
                 }
             }
         }
     }
 
     private static void setupGame(){
-        Room room1 = new Room("Room 1"); // instantiation of an object
-        Room room2 = new Room("Room 2");
-        Room room3 = new Room("Room 3");
-        Room room4 = new Room("Room 4");
+        room1 = new Room("Room 1"); // instantiation of an object
+        room2 = new Room("Room 2");
+        room3 = new Room("Room 3");
+        room4 = new Room("Room 4");
 
         // Room 1
         String[] room1ExitDirections = {"east", "south"}; // declaring an array
@@ -195,8 +203,7 @@ class RoomAdventure {
         room4.setGrabbables(room4Grabbables);
 
         //Room5
-        // Room 5 - The Secret Room
-        Room room5 = new Room("Room 5");
+        room5 = new Room("Room 5");
         String[] room5ExitDirections = {"down"};  
         Room[]   room5ExitDestinations = {room3};
         String[] room5Items = {"treasure"};
@@ -212,6 +219,8 @@ class RoomAdventure {
 
         
         currentRoom = room1;
+
+
     }
 
 
