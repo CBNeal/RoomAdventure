@@ -1,3 +1,5 @@
+//Callum Neal
+//Added Win Condition and Secret Room
 import java.util.Scanner;
 
 class RoomAdventure {
@@ -14,10 +16,10 @@ class RoomAdventure {
     private static Room room5;
 
 
-    final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'.";
+    final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', 'unlock' and 'take'.";
 
     public static void main(String[] args){
-         
+        
         setupGame();
 
         // while loops
@@ -65,7 +67,15 @@ class RoomAdventure {
                     break;
                 default: status = DEFAULT_STATUS;
             }
-            
+            for (String goldcheck : inventory) {
+                if ( goldcheck != null && goldcheck.equals("gold")) {
+                status = "YOU WIN";
+                System.out.println("YOU WIN!!!!");
+                System.out.print("###########################################################################################################3");
+                System.exit(0);
+
+                }
+            }
             System.out.println(status);
             
                     
@@ -80,7 +90,6 @@ class RoomAdventure {
         Room[] rooms = currentRoom.getExitDestinations();
 
         for (int i=0; i < directions.length; i++){
-            // for strings we use .equals() to compare 
             if (noun.equals(directions[i])){
                 currentRoom = rooms[i];
                 status = "Changed Room";
@@ -107,12 +116,10 @@ class RoomAdventure {
         for (int i = 0; i < grabs.length; i++){
             if (noun.equals(grabs[i])){
 
-                // maybe make a addToInventory() func?
-                // maybe expand the inventory to any number of items
+
                 for (int j=0; j < inventory.length; j++){
                     if (inventory[j] == null){
                         inventory[j] = noun;
-                        // maybe say what item was added?
                         status = "Added item to inventory";
                         break;
                     }
@@ -137,7 +144,7 @@ class RoomAdventure {
     }
 
     private static void setupGame(){
-        room1 = new Room("Room 1"); // instantiation of an object
+        room1 = new Room("Room 1"); 
         room2 = new Room("Room 2");
         room3 = new Room("Room 3");
         room4 = new Room("Room 4");
@@ -190,7 +197,7 @@ class RoomAdventure {
 
 
         //Room 4 
-        String[] room4ExitDirections = {"north", "west"};
+        String[] room4ExitDirections = {"north", "east"};
         Room[] room4ExitDestinations = {room1, room3};
         String[] room4Items = {};
         String[] room4ItemDescriptions = {};
