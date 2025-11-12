@@ -176,7 +176,7 @@ class RoomAdventure {
         room2.setGrabbables(room2Grabbables);
 
         //Room 3 
-        String[] room3ExitDirections = {"north, west"};
+        String[] room3ExitDirections = {"north","west"};
         Room[] room3ExitDestinations = {room2, room4};
         String[] room3Items = {"door"};
         String[] room3ItemDescriptions = {"Locked Door With A empy Keyhole"};
